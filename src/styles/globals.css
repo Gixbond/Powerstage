@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0B0B0D;
+}
+
+html, body, #root {
+  height: 100%;
+  background-color: var(--bg);
+  color: white;
+}
+
+.h1 {
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-size: clamp(40px, 8vw, 88px);
+  background: linear-gradient(90deg, #a855f7, #3b82f6, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.h2 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  line-height: 1.375;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .h2 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+.body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 768px) {
+  .body {
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+}
+
+/* Scene Styles */
+.scene-text {
+  opacity: 0.3;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.scene-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll-based animations */
+.scene-1 { transition-delay: 0.1s; }
+.scene-2 { transition-delay: 0.2s; }
+.scene-3 { transition-delay: 0.3s; }
+.scene-4 { transition-delay: 0.4s; }
+.scene-5 { transition-delay: 0.5s; }
+
+/* Better visibility for scenes */
+.scene-text .h1 {
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.scene-text .body {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
