@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import * as THREE from "three";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
@@ -34,7 +33,8 @@ export default function Scene3D() {
     // Kamera/Position wie gehabt
     if (group.current) {
       group.current.rotation.y = THREE.MathUtils.lerp(-0.25, 0.35, p);
-      group.current.position.y = THREE.MathUtils.lerp(0, 0.15, t1);
+      // Beim Scrollen nach unten das Objekt leicht nach unten bewegen (statt nach oben)
+      group.current.position.y = THREE.MathUtils.lerp(0, -0.15, t1);
       const zClose = THREE.MathUtils.lerp(0, -1.0, t3);
       const zFar = THREE.MathUtils.lerp(0, 1.2, t5);
       group.current.position.z = zClose + zFar;

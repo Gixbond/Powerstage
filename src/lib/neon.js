@@ -7,7 +7,7 @@ export const createNeonMaterial = (color, intensity = 1) => ({
   opacity: 0.8
 })
 
-export const createOutlineMaterial = (color, thickness = 0.02) => ({
+export const createOutlineMaterial = (color) => ({
   color,
   transparent: true,
   opacity: 0.5,

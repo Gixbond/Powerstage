@@ -1,141 +1,85 @@
-# POWER STAGE - Mobile Event-Trailer Website
+# POWER STAGE – Mobile Event‑Trailer Website
 
-Eine futuristische Scrollytelling-Website für den POWER STAGE mobilen Event-Trailer.
+Eine moderne Scrollytelling‑Site mit 3D‑Szene, React Router und Tailwind.
 
-## 🚀 Features
+## Features
+- 3D‑Scrollytelling: 5 Szenen mit React Three Fiber + Drei
+- Clean UI: Neon‑Akzente, responsives Layout
+- Routing: Unterseiten für About, Team, Tech, Services, Contact
+- SEO: Meta/OG‑Tags in `index.html`
+- GitHub Pages Deploy via Workflow
 
-- **3D Scrollytelling**: 5 interaktive Szenen mit Three.js
-- **Modernes Design**: Dark Mode mit Neon-Highlights
-- **Responsive**: Optimiert für Mobile und Desktop
-- **Performance**: Optimiert mit Vite und React
-- **SEO**: Meta-Tags und strukturierte Inhalte
+## Stack
+- React 19 (JS/JSX)
+- Vite 7
+- Tailwind CSS
+- @react-three/fiber, @react-three/drei
+- Optional vorhanden: Framer Motion, GSAP
 
-## 🛠️ Technologie-Stack
-
-- **Frontend**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS
-- **3D**: React Three Fiber + Drei
-- **Animationen**: Framer Motion + GSAP
-- **Fonts**: Inter (Google Fonts)
-
-## 📁 Projektstruktur
+## Struktur
 
 ```
 src/
-├── components/          # Wiederverwendbare UI-Komponenten
-│   ├── GradientTitle.tsx    # H1 mit Gradient-Effekt
-│   ├── SectionTitle.tsx     # H2 in Weiß
-│   ├── Paragraph.tsx        # Body-Text
-│   ├── Navbar.tsx           # Burger-Menü + Overlay
-│   ├── Footer.tsx           # Footer-Komponente
-│   ├── SceneCanvas.tsx      # 3D Canvas Container
-│   └── TrailerScene.tsx     # 3D Trailer-Logik
-├── pages/               # Seiten-Komponenten
-│   ├── Home.tsx         # Hero Scrollytelling (5 Szenen)
-│   ├── About.tsx        # Über POWER STAGE
-│   ├── Team.tsx         # Team-Vorstellung
-│   ├── Tech.tsx         # Technik & Ausstattung
-│   ├── Services.tsx     # Angebot & Leistungen
-│   └── Contact.tsx      # Kontaktformular
-├── styles/              # Styling
-│   └── globals.css      # Tailwind + Custom Utilities
-├── lib/                 # Utilities und Helpers
-│   ├── cameraPresets.ts # Kamerapositionen je Szene
-│   └── neon.ts          # Neon-Effekt Helpers
-└── main.tsx             # App Entry Point
+├── App.jsx            # Routes + Home 3D Scrollytelling
+├── Navbar.jsx         # Burger-Menü + Overlay-Navigation
+├── Scene3D.jsx        # Drei.js-Objekte + Scroll-Animation
+├── components/
+│   ├── GradientTitle.jsx
+│   ├── Paragraph.jsx
+│   └── SectionTitle.jsx
+├── pages/
+│   ├── About.jsx
+│   ├── Team.jsx
+│   ├── Tech.jsx
+│   ├── Services.jsx
+│   └── Contact.jsx
+├── index.css          # Tailwind + Utilities
+└── main.jsx           # Entry (HashRouter)
 ```
 
-## 🎨 Design-System
+Hinweis: Der Home‑Hero (5 Szenen) liegt direkt in `App.jsx` als DOM‑Overlay innerhalb der `ScrollControls` und nicht als eigene `Home.jsx`.
 
-### Farben
-- **Hintergrund**: `#0B0B0D` (Dunkel)
-- **Neon-Cyan**: `#00ffff`
-- **Neon-Magenta**: `#ff00ff`
-- **Neon-Yellow**: `#ffff00`
-- **Neon-Pink**: `#ff69b4`
-
-### Typografie
-- **Font**: Inter (Google Fonts)
-- **H1**: Gradient-Text mit `.h1` Utility
-- **H2**: Weiß mit `.h2` Utility
-- **Body**: Weiß/80% mit `.body` Utility
-
-## 🎬 Scrollytelling-Szenen
-
-1. **Szene 1**: Geschlossener Trailer → "A stage on wheels."
-2. **Szene 2**: Rolltor öffnet sich → "Unfold. Unlock. Play."
-3. **Szene 3**: Stromanschluss-Fokus → "Plug in. Power up."
-4. **Szene 4**: LED-Screens → "Your brand. Your content."
-5. **Szene 5**: Festival-Crowd → "Sound for 3000 guests."
-
-## 🚀 Installation & Start
+## Lokale Entwicklung
 
 ```bash
-# Dependencies installieren
 npm install
-
-# Development Server starten
 npm run dev
+# Öffnen: http://localhost:5173
+```
 
-# Build für Production
+Build und Preview:
+```bash
 npm run build
-
-# Preview Production Build
 npm run preview
+# Öffnen: http://localhost:4173/power-stage/
 ```
 
-## 📝 Anpassungen
+## Konfigurationen
+- Vite Base‑Path: `vite.config.js` nutzt `base: '/power-stage/'` für GitHub Pages (Repo‑Name).
+- Router: `HashRouter` in `src/main.jsx` vermeidet 404 auf Pages.
+- Scroll: Auf `/` wird `overflow` deaktiviert (3D‑Scroll), auf Unterseiten wieder aktiviert.
+- Tailwind: Konfig in `tailwind.config.js`, Utilities in `src/index.css`.
 
-### 3D-Modell ersetzen
-1. GLB/GLTF-Datei in `/public/model.glb` platzieren
-2. In `TrailerScene.tsx` das Dummy-Modell durch das echte Modell ersetzen:
-```tsx
-import { useGLTF } from "@react-three/drei"
+## Inhalte anpassen
+- 3D‑Szene: `src/Scene3D.jsx` (Geometrien, Lichter, Emissive‑Farben, Scroll‑Logik)
+- Home‑Text: Sections in `src/App.jsx` (DOM Overlay im `Scroll html`)
+- Seiten‑Inhalte: Dateien unter `src/pages/`
+- Farben/Fonts: `tailwind.config.js` und `src/index.css`
+- SEO: `index.html` Meta/OG
 
-// Ersetze die Box-Komponenten durch:
-const { nodes, materials } = useGLTF("/model.glb")
-```
+## Contributing
+- Branch: `git checkout -b feature/<name>`
+- Lint: `npm run lint` (muss sauber sein)
+- Commit: klare Nachrichten, z. B. `feat: add contact form validation`
+- PR: kurze Beschreibung, Screenshots bei UI‑Änderungen
 
-### Inhalte anpassen
-- **Texte**: In den entsprechenden Page-Komponenten bearbeiten
-- **Farben**: In `tailwind.config.js` anpassen
-- **Animationen**: In `TrailerScene.tsx` modifizieren
+## Deploy (GitHub Pages)
+- Workflow: `.github/workflows/deploy.yml` baut bei Push auf `main`.
+- Pfad: Projekt wird unter `/<repo>/` ausgeliefert → hier `'/power-stage/'`.
+- Anpassen: Falls Repo‑Name abweicht, `vite.config.js: base` entsprechend ändern.
+- Manuell testen: `npm run build && npm run preview` und `http://localhost:4173/power-stage/` öffnen.
 
-### SEO optimieren
-- Meta-Tags in `index.html` anpassen
-- Open Graph Tags für Social Media
-- Structured Data hinzufügen
-
-## 🔧 Development
-
-### Neue Szene hinzufügen
-1. Kamerapreset in `cameraPresets.ts` definieren
-2. 3D-Logik in `TrailerScene.tsx` erweitern
-3. Text-Overlay in `Home.tsx` hinzufügen
-
-### Neue Seite hinzufügen
-1. Page-Komponente in `/pages` erstellen
-2. Route in `App.tsx` hinzufügen
-3. Navigation in `Navbar.tsx` erweitern
-
-## 📱 Responsive Design
-
-- **Mobile**: Optimiert für Touch-Interaktionen
-- **Tablet**: Angepasste Layouts
-- **Desktop**: Vollständige 3D-Erfahrung
-
-## 🎯 Performance-Optimierungen
-
-- **Code Splitting**: Lazy Loading für Seiten
-- **3D-Optimierung**: Level of Detail (LOD)
-- **Asset-Optimierung**: Komprimierte Texturen
-- **Caching**: Service Worker für Offline-Support
-
-## 📄 Lizenz
-
+## Lizenz
 © 2024 POWER STAGE GmbH. Alle Rechte vorbehalten.
 
----
-
-**Entwickelt mit ❤️ für die Event-Branche**
+— Entwickelt mit ❤️ für die Event‑Branche

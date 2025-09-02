@@ -5,29 +5,59 @@
 :root { --bg: #0B0B0D; }
 html, body, #root { height: 100%; background: var(--bg); }
 
-@layer utilities {
-  .h1 {
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1.05;
-    letter-spacing: .02em;
-    font-size: clamp(40px, 7.5vw, 88px);
-    background: linear-gradient(90deg,#a855f7,#3b82f6,#22d3ee);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-  }
-  .h2 { font-size: clamp(22px,3.5vw,34px); font-weight: 700; color: #fff; }
-  .body { font-size: clamp(15px,2vw,18px); color: rgba(255,255,255,.8); line-height: 1.7; }
+/* Global box-sizing and sensible defaults */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
 
-  /* Reusable gradient text like homepage title */
-  .gradient-text {
-    background: linear-gradient(90deg,#a855f7,#3b82f6,#22d3ee);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-  }
+/* Centered container with max width */
+.container { max-width: 1100px; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+
+/* Fluid media */
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* Typographic scale using clamp */
+:root {
+  --step--1: clamp(12px, 1.5vw, 14px);
+  --step-0: clamp(14px, 1.8vw, 16px);
+  --step-1: clamp(18px, 2.2vw, 20px);
+  --step-2: clamp(24px, 3.5vw, 28px);
+  --step-3: clamp(32px, 5vw, 40px);
 }
 
-/* Browser-Scroll deaktivieren – ScrollControls übernehmen das Scrolling */
-html, body {
-  overflow: hidden;
+/* Modern viewport-height utility for equal section spacing (fixes mobile 100vh issues) */
+.h-viewport { height: 100vh; height: 100svh; height: 100dvh; }
+
+.h1 {
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: .02em;
+  font-size: clamp(40px, 7.5vw, 88px);
+  background: linear-gradient(90deg,#a855f7,#3b82f6,#22d3ee);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
 }
+.h2 { font-size: clamp(22px,3.5vw,34px); font-weight: 700; color: #fff; }
+.body { font-size: clamp(15px,2vw,18px); color: rgba(255,255,255,.8); line-height: 1.7; }
+
+/* Reusable gradient text like homepage title */
+.gradient-text {
+  background: linear-gradient(90deg,#a855f7,#3b82f6,#22d3ee);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* Layout helpers using CSS Grid/Flex (opt-in via classes) */
+.grid-12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(0.75rem, 2vw, 1.5rem); }
+.flex-col { display: flex; flex-direction: column; gap: clamp(0.75rem, 2vw, 1.25rem); }
+.center { display: grid; place-items: center; }
+
+/* Media queries for responsive switches */
+@media (min-width: 720px) {
+  .stack-md { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 2rem); }
+}
+@media (min-width: 1024px) {
+  .stack-lg { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 3vw, 2rem); }
+}
+
+/* Scroll-Verhalten wird dynamisch in App.jsx gesteuert (nur Home no-scroll) */
