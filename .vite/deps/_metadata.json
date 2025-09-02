@@ -1,0 +1,79 @@
+{
+  "hash": "ee0e9c9b",
+  "configHash": "9a1cbbcd",
+  "lockfileHash": "e948c662",
+  "browserHash": "3c08ab24",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "6228df53",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "ff11af9c",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "d4fec408",
+      "needsInterop": false
+    },
+    "@react-three/fiber": {
+      "src": "../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
+      "file": "@react-three_fiber.js",
+      "fileHash": "6eca81f6",
+      "needsInterop": false
+    },
+    "@react-three/drei": {
+      "src": "../../node_modules/@react-three/drei/index.js",
+      "file": "@react-three_drei.js",
+      "fileHash": "52cfe337",
+      "needsInterop": false
+    },
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
+      "file": "lucide-react.js",
+      "fileHash": "d21887d9",
+      "needsInterop": false
+    },
+    "three": {
+      "src": "../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "8947abfb",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "vision_bundle-SQYBGID6": {
+      "file": "vision_bundle-SQYBGID6.js"
+    },
+    "chunk-WEJ4AUIT": {
+      "file": "chunk-WEJ4AUIT.js"
+    },
+    "chunk-FYGYNQUM": {
+      "file": "chunk-FYGYNQUM.js"
+    },
+    "chunk-A526GQHB": {
+      "file": "chunk-A526GQHB.js"
+    },
+    "chunk-32EALFBN": {
+      "file": "chunk-32EALFBN.js"
+    },
+    "chunk-3NZHTT64": {
+      "file": "chunk-3NZHTT64.js"
+    },
+    "hls-6AL5ZCUK": {
+      "file": "hls-6AL5ZCUK.js"
+    },
+    "chunk-CHNFCEBE": {
+      "file": "chunk-CHNFCEBE.js"
+    },
+    "chunk-G3PMV62Z": {
+      "file": "chunk-G3PMV62Z.js"
+    }
+  }
+}
