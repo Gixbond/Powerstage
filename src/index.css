@@ -25,7 +25,15 @@ img, video { max-width: 100%; height: auto; display: block; }
 }
 
 /* Modern viewport-height utility for equal section spacing (fixes mobile 100vh issues) */
-.h-viewport { height: 100vh; height: 100svh; height: 100dvh; }
+.h-viewport { 
+  height: 100vh; 
+  height: 100svh; 
+  height: 100dvh; 
+  min-height: 500px;
+  /* Prevent content overflow on very small screens */
+  min-width: 320px;
+  overflow-x: hidden; 
+}
 
 .h1 {
   font-weight: 900;

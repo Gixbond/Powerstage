@@ -12,6 +12,8 @@ export default function Scene3D() {
   const door = useRef();
   const glow = useRef();
   const scroll = useScroll();
+  const lastOffset = useRef(0);
+  const lastUpdate = useRef(0);
 
   // Neon-Farben je Szene
   const neonColors = [
@@ -22,8 +24,14 @@ export default function Scene3D() {
     new THREE.Color("#3b82f6"), // Szene 5: Blue
   ];
 
-  useFrame(() => {
+  useFrame((state, delta) => {
     const p = scroll.offset; // 0..1
+    const now = state.clock.getElapsedTime();
+    
+    // Performance optimization: throttle updates
+    if (Math.abs(p - lastOffset.current) < 0.001 && now - lastUpdate.current < 0.016) return;
+    lastOffset.current = p;
+    lastUpdate.current = now;
     const t1 = range(p, 0.0, 0.2);
     const t2 = range(p, 0.2, 0.4);
     const t3 = range(p, 0.4, 0.6);

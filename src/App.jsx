@@ -1,10 +1,13 @@
 import Navbar from "./Navbar";
 import { Canvas } from "@react-three/fiber";
+import { LoadingScreen } from "./components/LoadingScreen";
+import { WebGLErrorBoundary } from "./components/WebGLErrorBoundary";
 import { ScrollControls, Scroll, useScroll } from "@react-three/drei";
 import Scene3D from "./Scene3D";
 import { useEffect, useMemo } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./components/Footer.jsx";
+import NotFound from "./pages/NotFound.jsx";
 import { About } from "./pages/About";
 import { Team } from "./pages/Team";
 import { Tech } from "./pages/Tech";
@@ -39,40 +42,6 @@ function Section({ title, side = "left" }) {
         )}
       </div>
     </section>
-  );
-}
-
-/** kleine Progress-Dots oben rechts, damit klar ist, in welcher Szene man ist */
-function ProgressDots({ pages = 5 }) {
-  const scroll = useScroll();
-  const thresholds = useMemo(
-    () => Array.from({ length: pages }, (_, i) => (i + 0.5) / pages),
-    [pages]
-  );
-  return (
-    <div className="fixed right-5 top-5 md:right-8 md:top-8 z-[9999]">
-      <div className="flex md:flex-col gap-3 md:gap-2">
-        {thresholds.map((t, i) => {
-          const active = scroll.offset >= i / pages && scroll.offset < (i + 1) / pages;
-          return (
-            <span
-              key={i}
-              className="inline-block rounded-full transition-all duration-200"
-              style={{
-                width: active ? 14 : 10,
-                height: active ? 14 : 10,
-                boxShadow: active ? "0 0 24px rgba(99,102,241,.7)" : "none",
-                background: active
-                  ? "linear-gradient(90deg,#a855f7,#3b82f6,#22d3ee)"
-                  : "rgba(255,255,255,.35)",
-                opacity: active ? 1 : 0.6,
-              }}
-              title={`Scene ${i + 1}`}
-            />
-          );
-        })}
-      </div>
-    </div>
   );
 }
 
@@ -143,41 +112,44 @@ export default function App() {
       />
 
       {/* 3D-Canvas liegt ganz hinten, bleibt immer zentral */}
-      <Canvas camera={{ fov: 45, near: 0.1, far: 100, position: [0, 0, 6] }}>
-        <color attach="background" args={["#0B0B0D"]} />
-        <ambientLight intensity={0.2} />
+      <WebGLErrorBoundary>
+        <LoadingScreen />
+        <Canvas camera={{ fov: 45, near: 0.1, far: 100, position: [0, 0, 6] }}>
+          <color attach="background" args={["#0B0B0D"]} />
+          <ambientLight intensity={0.2} />
 
-        {/* ScrollControls koppeln 3D und DOM über 5 "Seiten" */}
-        <ScrollControls pages={5} damping={0.14}>
-          <ScrollEdgeGuard />
-          {/* 3D-Modell: bleibt mittig; reagiert auf den Scroll-Offset (siehe Scene3D) */}
-          <Scene3D />
+          {/* ScrollControls koppeln 3D und DOM über 5 "Seiten" */}
+          <ScrollControls pages={5} damping={0.14}>
+            <ScrollEdgeGuard />
+            {/* 3D-Modell: bleibt mittig; reagiert auf den Scroll-Offset (siehe Scene3D) */}
+            <Scene3D />
 
-          {/* DOM-Overlay mit Textblöcken */}
-          <Scroll html>
-            <Section
-              side="left"
-              title={"A STAGE ON\nWHEELS."}
-            />
-            <Section
-              side="right"
-              title={"UNFOLD. UNLOCK.\nPLAY."}
-            />
-            <Section
-              side="left"
-              title={"PLUG IN.\nPOWER UP."}
-            />
-            <Section
-              side="right"
-              title={"YOUR BRAND.\nYOUR CONTENT."}
-            />
-            <Section
-              side="left"
-              title={"SOUND FOR\n3000\nGUESTS."}
-            />
-          </Scroll>
-        </ScrollControls>
-      </Canvas>
+            {/* DOM-Overlay mit Textblöcken */}
+            <Scroll html>
+              <Section
+                side="left"
+                title={"A STAGE ON\nWHEELS."}
+              />
+              <Section
+                side="right"
+                title={"UNFOLD. UNLOCK.\nPLAY."}
+              />
+              <Section
+                side="left"
+                title={"PLUG IN.\nPOWER UP."}
+              />
+              <Section
+                side="right"
+                title={"YOUR BRAND.\nYOUR CONTENT."}
+              />
+              <Section
+                side="left"
+                title={"SOUND FOR\n3000\nGUESTS."}
+              />
+            </Scroll>
+          </ScrollControls>
+        </Canvas>
+      </WebGLErrorBoundary>
     </>
   );
 
@@ -191,13 +163,7 @@ export default function App() {
         <Route path="/tech" element={<Tech />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<div className="min-h-screen grid place-items-center text-center p-10">
-          <div>
-            <h1 className="h1 mb-6">Seite nicht gefunden</h1>
-            <p className="body mb-8">Die angeforderte Seite existiert nicht.</p>
-            <a href="#/" className="inline-block bg-white/10 border border-white/15 px-5 py-3 rounded-lg text-white hover:bg-white/15 transition">Zurück zur Startseite</a>
-          </div>
-        </div>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {!isHome && <Footer />}
     </>

@@ -24,9 +24,7 @@ src/
 ├── Navbar.jsx         # Burger-Menü + Overlay-Navigation
 ├── Scene3D.jsx        # Drei.js-Objekte + Scroll-Animation
 ├── components/
-│   ├── GradientTitle.jsx
-│   ├── Paragraph.jsx
-│   └── SectionTitle.jsx
+│   └── Footer.jsx
 ├── pages/
 │   ├── About.jsx
 │   ├── Team.jsx
@@ -37,7 +35,7 @@ src/
 └── main.jsx           # Entry (HashRouter)
 ```
 
-Hinweis: Der Home‑Hero (5 Szenen) liegt direkt in `App.jsx` als DOM‑Overlay innerhalb der `ScrollControls` und nicht als eigene `Home.jsx`.
+Hinweis: Der Home‑Hero (5 Szenen) liegt direkt in `App.jsx` als DOM‑Overlay innerhalb der `ScrollControls`.
 
 ## Lokale Entwicklung
 

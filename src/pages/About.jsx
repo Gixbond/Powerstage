@@ -1,7 +1,4 @@
 import React from "react"
-import { GradientTitle } from "../components/GradientTitle"
-import { SectionTitle } from "../components/SectionTitle"
-import { Paragraph } from "../components/Paragraph"
 
 export const About = () => {
   return (
