@@ -20,9 +20,9 @@ function Section({ title, side = "left" }) {
   return (
     <section className="h-viewport grid grid-cols-12 items-center px-6 md:px-10">
       {/* Erste 4 Spalten: Text wenn links */}
-      <div className={`col-span-12 ${left ? "md:col-span-4" : "hidden md:block md:col-span-4"}`}>
+      <div className={`col-span-12 ${left ? "md:col-span-4 md:justify-self-start" : "hidden md:block md:col-span-4"}`}>
         {left && (
-          <div className="text-center md:text-left max-w-xl mx-auto md:mx-0">
+          <div className="text-center md:text-left max-w-xl">
             <h1 className="h1 whitespace-pre-line drop-shadow-[0_6px_20px_rgba(78,70,255,.25)]">
               {title}
             </h1>
@@ -32,9 +32,9 @@ function Section({ title, side = "left" }) {
       {/* Mittlere 4 Spalten: Frei für Animation */}
       <div className="hidden md:block md:col-span-4" />
       {/* Letzte 4 Spalten: Text wenn rechts */}
-      <div className={`col-span-12 ${!left ? "md:col-span-4" : "hidden md:block md:col-span-4"}`}>
+      <div className={`col-span-12 ${!left ? "md:col-span-4 md:justify-self-end" : "hidden md:block md:col-span-4"}`}>
         {!left && (
-          <div className="text-center md:text-left max-w-xl mx-auto md:mx-0">
+          <div className="text-center md:text-right max-w-xl">
             <h1 className="h1 whitespace-pre-line drop-shadow-[0_6px_20px_rgba(78,70,255,.25)]">
               {title}
             </h1>
