@@ -24,7 +24,7 @@ export default function Scene3D() {
     new THREE.Color("#3b82f6"), // Szene 5: Blue
   ];
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const p = scroll.offset; // 0..1
     const now = state.clock.getElapsedTime();
     

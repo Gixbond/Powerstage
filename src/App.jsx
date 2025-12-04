@@ -4,7 +4,7 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import { WebGLErrorBoundary } from "./components/WebGLErrorBoundary";
 import { ScrollControls, Scroll, useScroll } from "@react-three/drei";
 import Scene3D from "./Scene3D";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./components/Footer.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -68,7 +68,7 @@ function ScrollEdgeGuard() {
       el.removeEventListener('wheel', nudge);
       el.removeEventListener('touchstart', nudge);
     };
-  }, [scroll]);
+  }, [scroll.el]);
   return null;
 }
 
